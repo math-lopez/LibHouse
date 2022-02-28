@@ -1,0 +1,45 @@
+.container-master-login{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.container-full-left{
+  height: 100%;
+  width: 50%;
+  float: left;
+  background-color: rgb(255, 255, 255);
+}
+
+.container-full-right{
+  height: 100%;
+  width: 50%;
+  float: right;
+  background-color: aqua;
+}
+
+.container-data-subscribe{
+  margin-top: 20%;
+}
+
+.container-options-subscribe{
+  margin: 0 auto;
+  width: 50%;
+}
+.container-subscribe-infos{
+  width: 100%;
+}
+
+.title-subscribe{
+  text-align: center;
+  margin: 3rem 0rem;
+  font-size: 2rem;
+}
+
+.card-resident{
+  float: left;
+}
+
+.card-owner{
+  float: right;
+}
