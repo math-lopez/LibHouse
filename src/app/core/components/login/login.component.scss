@@ -17,3 +17,38 @@
   float: right;
   background-color: rgb(255, 255, 255);
 }
+
+.container-form-login{
+  width: 50%;
+  padding: 30% 25%;
+
+}
+
+.form-field{
+  display: block;
+  margin: 5% 0;
+}
+
+.btn-login{
+  width: 48%;
+}
+
+.btn-login-right{
+  float: right;
+}
+
+.btn-login-left{
+  float: left;
+}
+
+.btn-actions-form{
+  margin-top: 5%;
+}
+
+.title-login{
+  color: purple;
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: 15%;
+  width: 100%;
+}
