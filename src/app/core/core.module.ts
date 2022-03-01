@@ -8,13 +8,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { UserDataComponent } from './components/subscribe/user-data/user-data.component';
+import { PersonalDataComponent } from './components/subscribe/personal-data/personal-data.component';
+import { CardOptionSubscribeComponent } from './components/subscribe/card-option-subscribe/card-option-subscribe.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    UserDataComponent,
+    PersonalDataComponent,
+    CardOptionSubscribeComponent
   ],
   imports: [
     CommonModule,

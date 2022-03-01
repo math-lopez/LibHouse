@@ -1,5 +1,21 @@
-<div>
+<div class="container-master-login">
+  <div class="container-full-left">
+    <div class="container-data-subscribe">
+      <h2 class="title-subscribe">CADASTRO</h2>
+      <div class="container-options-subscribe" *ngIf="false">
+        <app-card-option-subscribe class="card-resident"></app-card-option-subscribe>
+        <app-card-option-subscribe class="card-owner"></app-card-option-subscribe>
+      </div>
+      <div class="container-subscribe-infos" *ngIf="true">
+        <app-user-data *ngIf="true"></app-user-data>
+        <app-personal-data *ngIf="false"></app-personal-data>
+      </div>
+    </div>
+
+  </div>
+  <div class="container-full-right">
+    <div class="container-form-login">
+
+    </div>
+  </div>
 </div>
-<h3>CADASTRO</h3>
-<!-- <app-dados-usuario></app-dados-usuario>
-<app-dados-pessoais></app-dados-pessoais> -->
