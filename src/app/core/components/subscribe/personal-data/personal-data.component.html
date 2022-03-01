@@ -1,1 +1,65 @@
-<p>personal-data works!</p>
+    <div class="container-form-login">
+      <form [formGroup]="formLogin" (ngSubmit)="logar()">
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+          <mat-error *ngIf="formLogin.controls['nome'].errors?.['required']">Email required</mat-error>
+          <mat-error *ngIf="formLogin.controls['nome'].errors?.['nome']">Email invalid</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput formControlName="sobrenome">
+          <mat-error *ngIf="formLogin.controls['sobrenome'].errors?.['required']">insira sua senha</mat-error>
+          <mat-error *ngIf="formLogin.controls['sobrenome'].errors?.['minlength']">caracteres insufisciente:
+            {{formLogin.controls['sobrenome'].errors?.['minlength']?.['actualLength']}}/
+            {{formLogin.controls['sobrenome'].errors?.['minlength']?.['requiredLength']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput formControlName="dataNascimento">
+          <mat-error *ngIf="formLogin.controls['dataNascimento'].errors?.['required']">insira sua senha</mat-error>
+          <mat-error *ngIf="formLogin.controls['dataNascimento'].errors?.['minlength']">caracteres insufisciente:
+            {{formLogin.controls['dataNascimento'].errors?.['minlength']?.['actualLength']}}/
+            {{formLogin.controls['dataNascimento'].errors?.['minlength']?.['requiredLength']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Gênero</mat-label>
+          <input matInput formControlName="genero">
+          <mat-error *ngIf="formLogin.controls['genero'].errors?.['required']">insira sua senha</mat-error>
+          <mat-error *ngIf="formLogin.controls['genero'].errors?.['minlength']">caracteres insufisciente:
+            {{formLogin.controls['genero'].errors?.['minlength']?.['actualLength']}}/
+            {{formLogin.controls['genero'].errors?.['minlength']?.['requiredLength']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone">
+          <mat-error *ngIf="formLogin.controls['telefone'].errors?.['required']">insira sua senha</mat-error>
+          <mat-error *ngIf="formLogin.controls['telefone'].errors?.['minlength']">caracteres insufisciente:
+            {{formLogin.controls['telefone'].errors?.['minlength']?.['actualLength']}}/
+            {{formLogin.controls['telefone'].errors?.['minlength']?.['requiredLength']}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="cpf">
+          <mat-error *ngIf="formLogin.controls['cpf'].errors?.['required']">insira sua senha</mat-error>
+          <mat-error *ngIf="formLogin.controls['cpf'].errors?.['minlength']">caracteres insufisciente:
+            {{formLogin.controls['cpf'].errors?.['minlength']?.['actualLength']}}/
+            {{formLogin.controls['cpf'].errors?.['minlength']?.['requiredLength']}}
+          </mat-error>
+        </mat-form-field>
+        <div class="btn-actions-form">
+          <button mat-raised-button color="primary" type="submit" class="btn-login">
+            PROSSEGUIR <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </div>

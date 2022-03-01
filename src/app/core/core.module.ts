@@ -11,6 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { UserDataComponent } from './components/subscribe/user-data/user-data.component';
 import { PersonalDataComponent } from './components/subscribe/personal-data/personal-data.component';
 import { CardOptionSubscribeComponent } from './components/subscribe/card-option-subscribe/card-option-subscribe.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -31,6 +32,7 @@ import { CardOptionSubscribeComponent } from './components/subscribe/card-option
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatIconModule
   ],
   exports: [],
   providers: []
