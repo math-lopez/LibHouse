@@ -34,4 +34,8 @@ export class LoginComponent implements OnInit {
       "password": [null, [Validators.required, Validators.minLength(6)]]
     });
   }
+
+  subscribe(){
+    this.router.navigateByUrl('subscribe')
+  }
 }

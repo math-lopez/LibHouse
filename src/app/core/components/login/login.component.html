@@ -2,31 +2,35 @@
   <div class="container-full-left">
 
   </div>
-  <div class="container-full-right">
-    <div class="container-form-login">
-      <h1 class="title-login">LOGIN</h1>
-      <form [formGroup]="formLogin" (ngSubmit)="logar()">
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
-          <mat-error *ngIf="formLogin.controls['email'].errors?.['required']">Email required</mat-error>
-          <mat-error *ngIf="formLogin.controls['email'].errors?.['email']">Email invalid</mat-error>
-        </mat-form-field>
 
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Senha</mat-label>
-          <input matInput formControlName="password" type="password">
-          <mat-error *ngIf="formLogin.controls['password'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formLogin.controls['password'].errors?.['minlength']">caracteres insufisciente:
-            {{formLogin.controls['password'].errors?.['minlength']?.['actualLength']}}/
-            {{formLogin.controls['password'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
-        </mat-form-field>
-        <div class="btn-actions-form">
-          <button mat-raised-button color="warn" type="submit" class="btn-login btn-login-left">SE INSCREVER</button>
-          <button mat-raised-button color="primary" type="submit" class="btn-login btn-login-right">ENTRAR</button>
-        </div>
-      </form>
+  <div class="container-full-right">
+    <div class="d-flex justify-content-center">
+
+      <div class="w-50 container-login">
+        <h1 class="title-login">LOGIN</h1>
+        <form [formGroup]="formLogin" (ngSubmit)="logar()">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="formLogin.controls['email'].errors?.['required']">Email required</mat-error>
+            <mat-error *ngIf="formLogin.controls['email'].errors?.['email']">Email invalid</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" type="password">
+            <mat-error *ngIf="formLogin.controls['password'].errors?.['required']">insira sua senha</mat-error>
+            <mat-error *ngIf="formLogin.controls['password'].errors?.['minlength']">caracteres insufisciente:
+              {{formLogin.controls['password'].errors?.['minlength']?.['actualLength']}}/
+              {{formLogin.controls['password'].errors?.['minlength']?.['requiredLength']}}
+            </mat-error>
+          </mat-form-field>
+          <div class="btn-actions-form">
+            <button mat-raised-button color="warn" (click)="subscribe()" class="btn-login btn-login-left">SE INSCREVER</button>
+            <button mat-raised-button color="primary" type="submit" class="btn-login btn-login-right">ENTRAR</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
+    </div>
+    </div>

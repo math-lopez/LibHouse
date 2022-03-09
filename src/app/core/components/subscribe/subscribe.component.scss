@@ -22,10 +22,6 @@
   margin-top: 12%;
 }
 
-.container-options-subscribe{
-  margin: 0 auto;
-  width: 50%;
-}
 .container-subscribe-infos{
   width: 100%;
 }
@@ -42,4 +38,11 @@
 
 .card-owner{
   float: right;
+}
+// ::ng-deep .mat-horizontal-stepper-header {
+//   pointer-events: none !important;
+// }
+
+.row-cards{
+  padding-top: 5rem !important;
 }

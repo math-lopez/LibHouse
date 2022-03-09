@@ -12,7 +12,8 @@ import { UserDataComponent } from './components/subscribe/user-data/user-data.co
 import { PersonalDataComponent } from './components/subscribe/personal-data/personal-data.component';
 import { CardOptionSubscribeComponent } from './components/subscribe/card-option-subscribe/card-option-subscribe.component';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    MatStepperModule,
+    MatSelectModule
   ],
   exports: [],
   providers: []

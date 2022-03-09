@@ -2,13 +2,45 @@
   <div class="container-full-left">
     <div class="container-data-subscribe">
       <h2 class="title-subscribe">CADASTRO</h2>
-      <div class="container-options-subscribe" *ngIf="false">
-        <app-card-option-subscribe class="card-resident"></app-card-option-subscribe>
-        <app-card-option-subscribe class="card-owner"></app-card-option-subscribe>
-      </div>
-      <div class="container-subscribe-infos" *ngIf="true">
-        <app-user-data *ngIf="false"></app-user-data>
-        <app-personal-data *ngIf="true"></app-personal-data>
+      <div class="container-subscribe-infos">
+        <mat-stepper #stepper>
+          <mat-step>
+            <ng-template matStepLabel>Perfil</ng-template>
+            <div class="w-75 mx-auto">
+              <div class="row-cards row">
+                <div class="col-6">
+                  <app-card-option-subscribe
+                  textCard="MORADOR"
+                  src="https://thumbs.dreamstime.com/z/nice-cheerful-woman-sit-table-work-home-typing-laptop-keyboard-talk-phone-her-breakfast-stand-138543439.jpg"
+                  class="card-resident"
+                  (avancarEtapa)="proximaEtapa($event)"
+                  >
+                </app-card-option-subscribe>
+                </div>
+                <div class="col-6">
+                  <app-card-option-subscribe
+                  textCard="PROPRIETARIO"
+                  src="https://thumbs.dreamstime.com/z/nice-cheerful-woman-sit-table-work-home-typing-laptop-keyboard-talk-phone-her-breakfast-stand-138543439.jpg"
+                  class="card-resident"
+                  (avancarEtapa)="proximaEtapa($event)"
+                  >
+                </app-card-option-subscribe>
+                </div>
+              </div>
+            </div>
+          </mat-step>
+          <mat-step class="pt-5">
+            <ng-template matStepLabel>Dados do usuário</ng-template>
+            <app-user-data class="mt-5" (anterior)="etapaAnterior($event)" (proximo)="proximaEtapa($event)"></app-user-data>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Dados pessoais</ng-template>
+            <app-personal-data
+            (anterior)="etapaAnterior($event)"
+            (proximo)="proximaEtapa($event)"
+            ></app-personal-data>
+          </mat-step>
+        </mat-stepper>
       </div>
     </div>
 

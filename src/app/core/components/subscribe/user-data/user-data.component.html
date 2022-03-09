@@ -1,1 +1,39 @@
-<p>user-data works!</p>
+<div class="container-form-login">
+  <form [formGroup]="formUser" (ngSubmit)="logar()">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="formUser.controls['email'].errors?.['required']">Email required</mat-error>
+      <mat-error *ngIf="formUser.controls['email'].errors?.['email']">Email invalid</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Senha</mat-label>
+      <input matInput formControlName="senha">
+      <mat-error *ngIf="formUser.controls['senha'].errors?.['required']">insira sua senha</mat-error>
+      <mat-error *ngIf="formUser.controls['senha'].errors?.['minlength']">caracteres insufisciente:
+        {{formUser.controls['senha'].errors?.['minlength']?.['actualLength']}}/
+        {{formUser.controls['senha'].errors?.['minlength']?.['requiredLength']}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Confirmação da senha</mat-label>
+      <input matInput formControlName="confirmacaoSenha">
+      <mat-error *ngIf="formUser.controls['confirmacaoSenha'].errors?.['required']">insira sua senha</mat-error>
+      <mat-error *ngIf="formUser.controls['confirmacaoSenha'].errors?.['minlength']">caracteres insufisciente:
+        {{formUser.controls['confirmacaoSenha'].errors?.['minlength']?.['actualLength']}}/
+        {{formUser.controls['confirmacaoSenha'].errors?.['minlength']?.['requiredLength']}}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="btn-actions-form">
+      <!-- <button mat-raised-button color="primary" (click)="voltarEtapa()" class="btn-login">
+        VOLTAR
+      </button> -->
+      <button mat-raised-button color="primary" type="submit" class="btn-login">
+        PROSSEGUIR <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
