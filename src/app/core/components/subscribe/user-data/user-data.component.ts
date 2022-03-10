@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { ComparePassword } from 'src/app/shared/validators/ComparePassword';
 
 @Component({
   selector: 'app-user-data',
@@ -10,11 +11,16 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./user-data.component.scss']
 })
 export class UserDataComponent implements OnInit {
+
+  @Output() anterior: EventEmitter<any> = new EventEmitter<any>();
+  @Output() proximo: EventEmitter<any> = new EventEmitter<any>();
+
   private subscription: Subscription[] = [];
 
   formUser = new FormGroup({});
-  @Output() anterior: EventEmitter<any> = new EventEmitter<any>();
-  @Output() proximo: EventEmitter<any> = new EventEmitter<any>();
+
+  hideConfirmPassword: boolean = true;
+  hidePassword: boolean = true;
 
   constructor(private aut: AuthenticationService, private fb: FormBuilder, private router: Router) {   }
 
@@ -32,9 +38,13 @@ export class UserDataComponent implements OnInit {
   criarFormulario(){
     this.formUser = this.fb.group({
       "email": [null, [Validators.required, Validators.email]],
-      "senha": [null, [Validators.required, Validators.minLength(6), ]],
-      "confirmacaoSenha": [null, [Validators.required, Validators.minLength(6)]]
-    });
+      "password": [null, [Validators.required, Validators.minLength(6), ]],
+      "confirmPassword": [null, [Validators.required, Validators.minLength(6)]]
+    },
+    {
+      validators: ComparePassword("password", "confirmPassword")
+    }
+    );
   }
 
   voltarEtapa(){
@@ -50,5 +60,4 @@ export class UserDataComponent implements OnInit {
       nextStepper: true
     });
   }
-
 }

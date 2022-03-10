@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
     if (!this.formLogin.valid) {
       return;
     }
-    console.log(this.formLogin.value);
   }
 
   criarFormulario(){

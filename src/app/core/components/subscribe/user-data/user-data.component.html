@@ -9,21 +9,28 @@
 
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Senha</mat-label>
-      <input matInput formControlName="senha">
-      <mat-error *ngIf="formUser.controls['senha'].errors?.['required']">insira sua senha</mat-error>
-      <mat-error *ngIf="formUser.controls['senha'].errors?.['minlength']">caracteres insufisciente:
-        {{formUser.controls['senha'].errors?.['minlength']?.['actualLength']}}/
-        {{formUser.controls['senha'].errors?.['minlength']?.['requiredLength']}}
+      <input matInput formControlName="password"  [type]="hidePassword ? 'password' : 'text'">
+      <p mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </p>
+      <mat-error *ngIf="formUser.controls['password'].errors?.['required']">insira sua senha</mat-error>
+      <mat-error *ngIf="formUser.controls['password'].errors?.['minlength']">caracteres insufisciente:
+        {{formUser.controls['password'].errors?.['minlength']?.['actualLength']}}/
+        {{formUser.controls['password'].errors?.['minlength']?.['requiredLength']}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="form-field">
       <mat-label>Confirmação da senha</mat-label>
-      <input matInput formControlName="confirmacaoSenha">
-      <mat-error *ngIf="formUser.controls['confirmacaoSenha'].errors?.['required']">insira sua senha</mat-error>
-      <mat-error *ngIf="formUser.controls['confirmacaoSenha'].errors?.['minlength']">caracteres insufisciente:
-        {{formUser.controls['confirmacaoSenha'].errors?.['minlength']?.['actualLength']}}/
-        {{formUser.controls['confirmacaoSenha'].errors?.['minlength']?.['requiredLength']}}
+      <input matInput formControlName="confirmPassword" [type]="hideConfirmPassword ? 'password' : 'text'">
+      <p mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </p>
+      <mat-error *ngIf="formUser.controls['confirmPassword'].errors?.['required']">insira sua senha</mat-error>
+      <mat-error *ngIf="formUser.controls['confirmPassword'].errors?.['mustMatch']">as senhas não correspondem</mat-error>
+      <mat-error *ngIf="formUser.controls['confirmPassword'].errors?.['minlength']">caracteres insufisciente:
+        {{formUser.controls['confirmPassword'].errors?.['minlength']?.['actualLength']}}/
+        {{formUser.controls['confirmPassword'].errors?.['minlength']?.['requiredLength']}}
       </mat-error>
     </mat-form-field>
 

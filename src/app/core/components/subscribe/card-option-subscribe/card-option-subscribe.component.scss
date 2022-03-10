@@ -6,6 +6,7 @@
 
 .text-card{
   transition: all .2s;
+  font-size: 1.4rem;
 }
 .text-card:hover{
   transform: scale(1.1);
@@ -14,4 +15,8 @@
 .row{
   margin: 0 0;
   height: 5rem;
+}
+
+.container-img{
+  border-bottom: solid 2px rgba(95, 23, 234, 0.5);
 }

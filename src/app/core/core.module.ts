@@ -14,6 +14,7 @@ import { CardOptionSubscribeComponent } from './components/subscribe/card-option
 import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatIconModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxMaskModule.forRoot()
   ],
   exports: [],
   providers: []

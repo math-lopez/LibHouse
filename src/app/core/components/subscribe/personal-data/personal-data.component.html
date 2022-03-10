@@ -3,28 +3,20 @@
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Nome</mat-label>
           <input matInput formControlName="nome">
-          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['required']">Email required</mat-error>
-          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['nome']">Email invalid</mat-error>
+          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['required']">campo obrigatório</mat-error>
+          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['nome']">nome invalido</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Sobrenome</mat-label>
           <input matInput formControlName="sobrenome">
-          <mat-error *ngIf="formPersonal.controls['sobrenome'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formPersonal.controls['sobrenome'].errors?.['minlength']">caracteres insufisciente:
-            {{formPersonal.controls['sobrenome'].errors?.['minlength']?.['actualLength']}}/
-            {{formPersonal.controls['sobrenome'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
+          <mat-error *ngIf="formPersonal.controls['sobrenome'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Data de nascimento</mat-label>
-          <input matInput formControlName="dataNascimento">
-          <mat-error *ngIf="formPersonal.controls['dataNascimento'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formPersonal.controls['dataNascimento'].errors?.['minlength']">caracteres insufisciente:
-            {{formPersonal.controls['dataNascimento'].errors?.['minlength']?.['actualLength']}}/
-            {{formPersonal.controls['dataNascimento'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
+          <input matInput formControlName="dataNascimento" mask="00/00/0000">
+          <mat-error *ngIf="formPersonal.controls['dataNascimento'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
@@ -34,31 +26,19 @@
               {{gender}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formPersonal.controls['genero'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formPersonal.controls['genero'].errors?.['minlength']">caracteres insufisciente:
-            {{formPersonal.controls['genero'].errors?.['minlength']?.['actualLength']}}/
-            {{formPersonal.controls['genero'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
+          <mat-error *ngIf="formPersonal.controls['genero'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Telefone</mat-label>
-          <input matInput formControlName="telefone">
-          <mat-error *ngIf="formPersonal.controls['telefone'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formPersonal.controls['telefone'].errors?.['minlength']">caracteres insufisciente:
-            {{formPersonal.controls['telefone'].errors?.['minlength']?.['actualLength']}}/
-            {{formPersonal.controls['telefone'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
+          <mat-label>Celular</mat-label>
+          <input matInput formControlName="telefone" mask="(00)00000-0000">
+          <mat-error *ngIf="formPersonal.controls['telefone'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>CPF</mat-label>
-          <input matInput formControlName="cpf">
-          <mat-error *ngIf="formPersonal.controls['cpf'].errors?.['required']">insira sua senha</mat-error>
-          <mat-error *ngIf="formPersonal.controls['cpf'].errors?.['minlength']">caracteres insufisciente:
-            {{formPersonal.controls['cpf'].errors?.['minlength']?.['actualLength']}}/
-            {{formPersonal.controls['cpf'].errors?.['minlength']?.['requiredLength']}}
-          </mat-error>
+          <input matInput formControlName="cpf" mask="000.000.000-00">
+          <mat-error *ngIf="formPersonal.controls['cpf'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
         <div class="btn-actions-form">
           <!-- <button mat-raised-button color="primary" (click)="voltarEtapa()" class="btn-login">

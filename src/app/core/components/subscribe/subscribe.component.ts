@@ -34,7 +34,6 @@ export class SubscribeComponent implements OnInit {
         this.cadastrar()
       }
     }
-    console.log(this.formSubscribe)
     command.nextStepper ? this.myStepper?.next() : null;
   }
 

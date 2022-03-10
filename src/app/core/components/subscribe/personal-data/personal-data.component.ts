@@ -32,7 +32,7 @@ export class PersonalDataComponent implements OnInit {
   criarFormulario(){
     this.formPersonal = this.fb.group({
       "nome": [null, [Validators.required]],
-      "sobrenome": [null, [Validators.required, Validators.minLength(6)]],
+      "sobrenome": [null, [Validators.required]],
       "dataNascimento": [null, [Validators.required]],
       "genero": [null, [Validators.required]],
       "telefone": [null, [Validators.required]],

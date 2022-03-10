@@ -15,11 +15,9 @@ export class AuthenticationGuard implements CanActivate {
       var user = localStorage.getItem('token') ?? null;
       if(user === null){
         this.router.navigateByUrl('/login');
-        console.log("nao autenticado");
         return false;
       }else{
         this.router.navigateByUrl('/login');
-        console.log("autenticado");
         return true;
       }
   }
