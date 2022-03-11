@@ -8,13 +8,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import { UserDataComponent } from './components/subscribe/user-data/user-data.component';
-import { PersonalDataComponent } from './components/subscribe/personal-data/personal-data.component';
-import { CardOptionSubscribeComponent } from './components/subscribe/card-option-subscribe/card-option-subscribe.component';
+import { UserDataComponent } from './components/subscribe/data-subscribe/user-data/user-data.component';
+import { PersonalDataComponent } from './components/subscribe/data-subscribe/personal-data/personal-data.component';
+import { CardOptionSubscribeComponent } from './components/subscribe/data-subscribe/chose-perfil/card-option-subscribe/card-option-subscribe.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
 import { NgxMaskModule } from 'ngx-mask';
+import { ChosePerfilComponent } from './components/subscribe/data-subscribe/chose-perfil/chose-perfil.component';
+import { DataSubscribeComponent } from './components/subscribe/data-subscribe/data-subscribe.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { NgxMaskModule } from 'ngx-mask';
     SubscribeComponent,
     UserDataComponent,
     PersonalDataComponent,
-    CardOptionSubscribeComponent
+    CardOptionSubscribeComponent,
+    ChosePerfilComponent,
+    DataSubscribeComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatSelectModule,
     NgxMaskModule.forRoot()
   ],
-  exports: [],
+  exports: [  ],
   providers: []
 })
 export class CoreModule { }

@@ -17,6 +17,7 @@ export class CardOptionSubscribeComponent implements OnInit {
   }
 
   proximaEtapa(typeUser: string | null){
+    console.log(typeUser)
     this.avancarEtapa.emit({
       nextStepper: true,
       typeUser: typeUser
