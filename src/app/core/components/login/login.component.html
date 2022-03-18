@@ -30,14 +30,16 @@
               *ngIf="formLogin.controls['password'].errors?.['minlength']"
               >caracteres insufisciente:
               {{formLogin.controls['password'].errors?.['minlength']?.['actualLength']
+
               }}/
               {{formLogin.controls['password'].errors?.['minlength']?.['requiredLength']}}
             </mat-error>
           </mat-form-field>
+          <mat-error *ngIf="errorReturn !== null">{{ errorReturn.Message }}</mat-error>
           <div class="btn-actions-form">
             <button
               mat-raised-button
-              (click)="subscribe()"
+              (click)="redirectRoute('subscribe')"
               class="btn-subscribe btn-login-left"
             >
               SE INSCREVER
