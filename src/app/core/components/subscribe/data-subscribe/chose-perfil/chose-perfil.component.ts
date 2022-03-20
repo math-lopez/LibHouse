@@ -14,6 +14,7 @@ export class ChosePerfilComponent implements OnInit {
   }
 
   proximaEtapa(command: any | null) {
+    console.log(command)
     this.proximaEtapaOut.emit(
       {
         ...command

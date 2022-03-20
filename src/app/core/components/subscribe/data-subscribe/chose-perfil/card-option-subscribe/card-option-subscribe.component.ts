@@ -16,11 +16,14 @@ export class CardOptionSubscribeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  proximaEtapa(typeUser: string | null){
-    console.log(typeUser)
+  proximaEtapa(userType: string | null){
+    let userTypeReturn: Number = 0
+    if(userType === 'MORADOR') userTypeReturn = 1;
+    else userTypeReturn = 2;
+
     this.avancarEtapa.emit({
       nextStepper: true,
-      typeUser: typeUser
+      UserType: userTypeReturn
     });
   }
 

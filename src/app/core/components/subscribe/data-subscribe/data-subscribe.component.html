@@ -11,14 +11,12 @@
       <ng-template matStepLabel>Dados do usuário</ng-template>
       <app-user-data
         class="mt-5"
-        (anterior)="etapaAnterior($event)"
         (proximo)="proximaEtapa($event)"
       ></app-user-data>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Dados pessoais</ng-template>
       <app-personal-data
-        (anterior)="etapaAnterior($event)"
         (proximo)="proximaEtapa($event)"
       ></app-personal-data>
     </mat-step>

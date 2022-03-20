@@ -1,8 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ComparePassword } from 'src/app/shared/validators/ComparePassword';
 
 @Component({
@@ -12,17 +9,14 @@ import { ComparePassword } from 'src/app/shared/validators/ComparePassword';
 })
 export class UserDataComponent implements OnInit {
 
-  @Output() anterior: EventEmitter<any> = new EventEmitter<any>();
   @Output() proximo: EventEmitter<any> = new EventEmitter<any>();
-
-  private subscription: Subscription[] = [];
 
   formUser = new FormGroup({});
 
   hideConfirmPassword: boolean = true;
   hidePassword: boolean = true;
 
-  constructor(private aut: AuthenticationService, private fb: FormBuilder, private router: Router) {   }
+  constructor(private fb: FormBuilder) {   }
 
   ngOnInit(): void {
     this.criarFormulario();
@@ -37,21 +31,14 @@ export class UserDataComponent implements OnInit {
 
   criarFormulario(){
     this.formUser = this.fb.group({
-      "email": [null, [Validators.required, Validators.email]],
-      "password": [null, [Validators.required, Validators.minLength(6), ]],
-      "confirmPassword": [null, [Validators.required, Validators.minLength(6)]]
+      "Email": [null, [Validators.required, Validators.email]],
+      "Password": [null, [Validators.required, Validators.minLength(6), ]],
+      "ConfirmPassword": [null, [Validators.required, Validators.minLength(6)]]
     },
     {
-      validators: ComparePassword("password", "confirmPassword")
+      validators: ComparePassword("Password", "ConfirmPassword")
     }
     );
-  }
-
-  voltarEtapa(){
-    this.anterior.emit({
-      userForm: this.formUser,
-      previousStepper: true
-    });
   }
 
   proximaEtapa(){

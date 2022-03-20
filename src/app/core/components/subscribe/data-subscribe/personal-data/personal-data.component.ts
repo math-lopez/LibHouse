@@ -14,16 +14,16 @@ export class PersonalDataComponent implements OnInit {
   private subscription: Subscription[] = [];
 
   genders: Array<any> = [
-    'masculino',
-    'feminino',
-    'outros'
+    { id: 0, name:'masculino'},
+    { id: 1, name:'feminino'},
+    { id: 2, name:'outros'},
+    { id: 3, name:'não declarado'}
   ];
 
   formPersonal = new FormGroup({});
-  @Output() anterior: EventEmitter<any> = new EventEmitter<any>();
   @Output() proximo: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private aut: AuthenticationService, private fb: FormBuilder, private router: Router) {   }
+  constructor(private fb: FormBuilder, private router: Router) {   }
 
   ngOnInit(): void {
     this.criarFormulario();
@@ -31,24 +31,20 @@ export class PersonalDataComponent implements OnInit {
 
   criarFormulario(){
     this.formPersonal = this.fb.group({
-      "nome": [null, [Validators.required]],
-      "sobrenome": [null, [Validators.required]],
-      "dataNascimento": [null, [Validators.required]],
-      "genero": [null, [Validators.required]],
-      "telefone": [null, [Validators.required]],
-      "cpf": [null, [Validators.required]]
+      "Name": [null, [Validators.required]],
+      "LastName": [null, [Validators.required]],
+      "BirthDate": [null, [Validators.required]],
+      "Gender": [null, [Validators.required]],
+      "Phone": [null, [Validators.required]],
+      "CPF": [null, [Validators.required]]
     });
   }
 
-  voltarEtapa(){
-    this.anterior.emit({
-      personalForm: this.formPersonal,
-      previousStepper: true
-    });
+  voltarHome(){
+    this.router.navigateByUrl('login')
   }
 
   proximaEtapa(){
-
     this.proximo.emit({
       personalForm: this.formPersonal,
       previousStepper: true,

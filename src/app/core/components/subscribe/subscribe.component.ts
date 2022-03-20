@@ -1,6 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatStepper } from '@angular/material/stepper';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-subscribe',
@@ -9,8 +7,7 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class SubscribeComponent implements OnInit {
 
-
-  constructor(private fb: FormBuilder) { }
+  constructor() { }
 
   ngOnInit(): void {}
 }

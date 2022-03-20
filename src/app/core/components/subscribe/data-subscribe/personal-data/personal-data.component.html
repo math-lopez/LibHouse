@@ -2,50 +2,50 @@
       <form [formGroup]="formPersonal" (ngSubmit)="proximaEtapa()">
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome">
-          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['required']">campo obrigatório</mat-error>
-          <mat-error *ngIf="formPersonal.controls['nome'].errors?.['nome']">nome invalido</mat-error>
+          <input matInput formControlName="Name">
+          <mat-error *ngIf="formPersonal.controls['Name'].errors?.['required']">campo obrigatório</mat-error>
+          <mat-error *ngIf="formPersonal.controls['Name'].errors?.['Name']">nome invalido</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Sobrenome</mat-label>
-          <input matInput formControlName="sobrenome">
-          <mat-error *ngIf="formPersonal.controls['sobrenome'].errors?.['required']">campo obrigatório</mat-error>
+          <input matInput formControlName="LastName">
+          <mat-error *ngIf="formPersonal.controls['LastName'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Data de nascimento</mat-label>
-          <input matInput formControlName="dataNascimento" mask="00/00/0000">
-          <mat-error *ngIf="formPersonal.controls['dataNascimento'].errors?.['required']">campo obrigatório</mat-error>
+          <input matInput formControlName="BirthDate" mask="00/00/0000">
+          <mat-error *ngIf="formPersonal.controls['BirthDate'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Gênero</mat-label>
-          <mat-select formControlName="genero">
-            <mat-option *ngFor="let gender of genders" [value]="gender">
-              {{gender}}
+          <mat-select formControlName="Gender">
+            <mat-option *ngFor="let gender of genders" [value]="gender.id">
+              {{gender.name}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="formPersonal.controls['genero'].errors?.['required']">campo obrigatório</mat-error>
+          <mat-error *ngIf="formPersonal.controls['Gender'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>Celular</mat-label>
-          <input matInput formControlName="telefone" mask="(00)00000-0000">
-          <mat-error *ngIf="formPersonal.controls['telefone'].errors?.['required']">campo obrigatório</mat-error>
+          <input matInput formControlName="Phone" mask="(00)00000-0000">
+          <mat-error *ngIf="formPersonal.controls['Phone'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">
           <mat-label>CPF</mat-label>
-          <input matInput formControlName="cpf" mask="000.000.000-00">
-          <mat-error *ngIf="formPersonal.controls['cpf'].errors?.['required']">campo obrigatório</mat-error>
+          <input matInput formControlName="CPF" mask="000.000.000-00">
+          <mat-error *ngIf="formPersonal.controls['CPF'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
         <div class="btn-actions-form">
-          <!-- <button mat-raised-button color="primary" (click)="voltarEtapa()" class="btn-login">
-            VOLTAR
-          </button> -->
           <button matStepperNext mat-raised-button color="primary" type="submit" class="btn-login">
             CADASTRAR <mat-icon>arrow_forward</mat-icon>
+          </button>
+          <button mat-stroked-button color="primary" (click)="voltarHome()" class="btn-login mt-2">
+            VOLTAR
           </button>
         </div>
       </form>

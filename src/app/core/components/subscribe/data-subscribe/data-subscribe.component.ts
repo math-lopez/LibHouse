@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { SubscribeService } from '../services/subscribe.service';
 
 @Component({
   selector: 'app-data-subscribe',
@@ -12,19 +13,18 @@ export class DataSubscribeComponent implements OnInit {
   formSubscribe = new FormGroup({})
   isLinear = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private subscribeService: SubscribeService) { }
 
   ngOnInit(): void {
   }
 
   proximaEtapa(command: any | null){
-    console.log(command)
-    if(command?.typeUser != null){
+    if(command?.UserType != null){
       this.formSubscribe = this.fb.group({
         ...command?.userForm?.controls,
         ...command?.personalForm?.controls,
         ...this.formSubscribe.controls,
-        "typeUser": [command.typeUser]
+        "UserType": [command.UserType]
       });
     }else{
       this.formSubscribe = this.fb.group({
@@ -51,6 +51,7 @@ export class DataSubscribeComponent implements OnInit {
   }
 
   cadastrar(){
-    console.log(this.formSubscribe)
+    console.log(this.formSubscribe.value)
+    this.subscribeService.subscribe(this.formSubscribe.value)
   }
 }
