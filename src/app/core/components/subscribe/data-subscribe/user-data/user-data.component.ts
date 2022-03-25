@@ -23,10 +23,9 @@ export class UserDataComponent implements OnInit {
   }
 
   logar() {
-    if (!this.formUser.valid) {
-      return;
+    if (this.formUser.valid) {
+      this.proximaEtapa();
     }
-    this.proximaEtapa();
   }
 
   criarFormulario(){
@@ -37,8 +36,7 @@ export class UserDataComponent implements OnInit {
     },
     {
       validators: ComparePassword("Password", "ConfirmPassword")
-    }
-    );
+    });
   }
 
   proximaEtapa(){

@@ -9,7 +9,7 @@ import { SubscribeService } from '../services/subscribe.service';
   styleUrls: ['./data-subscribe.component.scss']
 })
 export class DataSubscribeComponent implements OnInit {
-  @ViewChild('stepper') private myStepper: MatStepper | undefined;
+  @ViewChild('stepper') myStepper: MatStepper | undefined;
   formSubscribe = new FormGroup({})
   isLinear = false;
 
@@ -30,7 +30,8 @@ export class DataSubscribeComponent implements OnInit {
       this.formSubscribe = this.fb.group({
         ...command?.userForm?.controls,
         ...command?.personalForm?.controls,
-        ...this.formSubscribe.controls
+        ...this.formSubscribe.controls,
+        "UserType": null
       });
       if(command.finish){
         this.cadastrar()
@@ -39,19 +40,7 @@ export class DataSubscribeComponent implements OnInit {
     command.nextStepper ? this.myStepper?.next() : null;
   }
 
-  etapaAnterior(command: any | null){
-    this.formSubscribe = this.fb.group({
-      ...command?.userForm.controls,
-      ...command?.personal.controls,
-      ...this.formSubscribe.controls
-    });
-    if(command.previousStepper) {
-      this.myStepper?.previous()
-    }
-  }
-
   cadastrar(){
-    console.log(this.formSubscribe.value)
     this.subscribeService.subscribe(this.formSubscribe.value)
   }
 }

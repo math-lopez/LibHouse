@@ -18,7 +18,7 @@ export class CardOptionSubscribeComponent implements OnInit {
 
   proximaEtapa(userType: string | null){
     let userTypeReturn: Number = 0
-    if(userType === 'MORADOR') userTypeReturn = 1;
+    if(userType?.toUpperCase() === 'MORADOR') userTypeReturn = 1;
     else userTypeReturn = 2;
 
     this.avancarEtapa.emit({
