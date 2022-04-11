@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAuthLogin } from '../components/login/models/auth-login'
+import { ConfirmationEmail } from '../components/login/models/confimation-email';
 import { IUserAuthentication } from '../components/login/models/user-authentication';
 
 
@@ -23,12 +24,13 @@ export class AuthenticationService {
           if (user !== null) {
             this.userLogged$.next(true);
             this.userData = user;
+            localStorage.setItem('user', JSON.stringify(user));
           }
         })
       );
   }
 
-  emailConfirmation(userEmail: string | null, userId: string | null, tokenConfirmEmail: string | null): Observable<boolean> {
-    return this.http.patch<boolean>(`${environment.API}users/confirm-registration?confirmationToken=${tokenConfirmEmail}&userEmail=${userEmail}&userId=${userId}`, {});
+  emailConfirmation(confirmationEmail: ConfirmationEmail): Observable<boolean> {
+    return this.http.patch<boolean>(`${environment.API}users/confirm-registration`, {...confirmationEmail});
   }
 }

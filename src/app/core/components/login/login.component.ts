@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { map, Subscription, tap } from 'rxjs';
 import { handleErrorLogin } from 'src/app/shared/utilities/handle-error-login';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Error } from "../../../shared/models/errors";
@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   formLogin = new FormGroup({});
   confirmSuccess: boolean | null | undefined = false;
-  tokenConfirmEmail: string | null | undefined = null;
-  userEmail: string | null | undefined = null;
-  userId: string | null | undefined = null;
+  ConfirmationToken: string | null | undefined = null;
+  UserEmail: string | null | undefined = null;
+  UserId: string | null | undefined = null;
   previousUrl: string | null | undefined;
   errorReturn: Error | null = null;
 
-  showFormTemplate = (this.tokenConfirmEmail === null || this.tokenConfirmEmail === undefined)
-    && (this.userEmail === null || this.userEmail === undefined)
-    && (this.userId === null || this.userId === undefined);
+  showFormTemplate = (this.ConfirmationToken === null || this.ConfirmationToken === undefined)
+    && (this.UserEmail === null || this.UserEmail === undefined)
+    && (this.UserId === null || this.UserId === undefined);
 
   constructor(
     private authService: AuthenticationService,
@@ -66,15 +66,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private getParamsRouteLogin(): void {
     this.subscription.push(
-      this.activedRoute.paramMap.subscribe(paraMap => {
-        this.userEmail = paraMap.get('userEmail');
-        this.tokenConfirmEmail = paraMap.get('tokenConfirmEmail');
-        this.userId = paraMap.get('userId');
+      this.activedRoute.paramMap
+      .subscribe(paraMap => {
+        this.UserEmail = paraMap.get('userEmail');
+        this.ConfirmationToken = paraMap.get('tokenConfirmEmail');
+        this.UserId = paraMap.get('userId');
         this.confirmSuccess = paraMap.get('confirmSuccess') === 'true' ? true : false;
-
-        if (this.userEmail && this.userId && this.tokenConfirmEmail) {
+        if (this.UserEmail && this.UserId && this.ConfirmationToken) {
           this.subscription.push(
-            this.authService.emailConfirmation(this.userEmail, this.userId, this.tokenConfirmEmail)
+            this.authService.emailConfirmation({ UserEmail: this.UserEmail, UserId: this.UserId, ConfirmationToken: this.ConfirmationToken})
               .subscribe(
                 {
                   next: confirm => {
