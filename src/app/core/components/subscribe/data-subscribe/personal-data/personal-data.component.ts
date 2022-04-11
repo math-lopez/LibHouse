@@ -10,13 +10,11 @@ import { Subscription } from 'rxjs';
 })
 export class PersonalDataComponent implements OnInit {
 
-  private subscription: Subscription[] = [];
-
   genders: Array<any> = [
-    { id: 0, name:'masculino'},
-    { id: 1, name:'feminino'},
-    { id: 2, name:'outros'},
-    { id: 3, name:'não declarado'}
+    { id: 1, name:'masculino'},
+    { id: 2, name:'feminino'},
+    { id: 3, name:'outros'},
+    { id: 4, name:'não declarado'}
   ];
 
   formPersonal = new FormGroup({});

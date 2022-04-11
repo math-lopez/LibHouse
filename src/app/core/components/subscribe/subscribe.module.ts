@@ -17,6 +17,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NgxMaskModule } from 'ngx-mask';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core'
 
 
 
@@ -40,10 +43,15 @@ import { NgxMaskModule } from 'ngx-mask';
     MatIconModule,
     MatStepperModule,
     MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
   providers: [
-    SubscribeService
+    SubscribeService,
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'pt-BR'
+    }
   ],
   exports: [
     SubscribeComponent

@@ -13,10 +13,12 @@
           <mat-error *ngIf="formPersonal.controls['LastName'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="form-field">
-          <mat-label>Data de nascimento</mat-label>
-          <input matInput formControlName="BirthDate" mask="00/00/0000">
+        <mat-form-field appearance="fill" class="w-100">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="BirthDate">
           <mat-error *ngIf="formPersonal.controls['BirthDate'].errors?.['required']">campo obrigatório</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="form-field">

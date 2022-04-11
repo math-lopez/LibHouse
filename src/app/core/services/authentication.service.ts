@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { IAuthLogin } from '../components/login/models/auth-login'
 import { IUserAuthentication } from '../components/login/models/user-authentication';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
   authentication(usuario: IUserAuthentication): Observable<IAuthLogin> {
-    return this.http.post<IAuthLogin>(`${environment.API}authentication`, usuario)
+    return this.http.post<IAuthLogin>(`${environment.API}users/login`, usuario)
       .pipe(
         tap(user => {
           if (user !== null) {
@@ -28,6 +29,6 @@ export class AuthenticationService {
   }
 
   emailConfirmation(userEmail: string | null, userId: string | null, tokenConfirmEmail: string | null): Observable<boolean> {
-    return this.http.get<boolean>(`${environment.API}emailConfirmation/${userEmail}/${userId}/${tokenConfirmEmail}`);
+    return this.http.patch<boolean>(`${environment.API}users/confirm-registration?confirmationToken=${tokenConfirmEmail}&userEmail=${userEmail}&userId=${userId}`, {});
   }
 }

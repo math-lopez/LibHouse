@@ -12,6 +12,7 @@ export class SubscribeService {
   constructor(private http: HttpClient) { }
 
   subscribe(usuario: ISubscribeDataUser): Observable<any> {
-    return this.http.post<any>(`${environment.API}subscribe`, usuario);
+    console.log(usuario)
+    return this.http.post<any>(`${environment.API}users/new-account`, usuario);
   }
 }
