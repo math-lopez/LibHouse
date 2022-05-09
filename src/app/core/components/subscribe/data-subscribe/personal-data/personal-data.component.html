@@ -43,10 +43,10 @@
           <mat-error *ngIf="formPersonal.controls['CPF'].errors?.['required']">campo obrigatório</mat-error>
         </mat-form-field>
         <div class="btn-actions-form">
-          <button matStepperNext mat-raised-button color="primary" type="submit" class="btn-login">
+          <button matStepperNext mat-raised-button color="primary" type="submit" class="btn-submit">
             CADASTRAR <mat-icon>arrow_forward</mat-icon>
           </button>
-          <button mat-stroked-button color="primary" (click)="voltarHome()" class="btn-login mt-2">
+          <button mat-stroked-button color="primary" (click)="voltarHome()" class="btn-submit mt-2">
             VOLTAR
           </button>
         </div>
