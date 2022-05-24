@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginModule } from './components/login/login.module';
 import { SubscribeModule } from './components/subscribe/subscribe.module';
 import { ResetPasswordModule } from './components/reset-password/reset-password.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [],
@@ -10,7 +11,8 @@ import { ResetPasswordModule } from './components/reset-password/reset-password.
     CommonModule,
     LoginModule,
     ResetPasswordModule,
-    SubscribeModule
+    SubscribeModule,
+    RouterModule
   ]
 })
 export class CoreModule { }

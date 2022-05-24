@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Error } from "../../../../shared/models/errors";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { RequestPasswordResetService } from '../services/request-password-reset.service';
-import { handleErrorRequestPasswordReset } from '../utilities/handle-error-request-password-reset';
+import { HandlerRequestApis } from 'src/app/shared/utilities/handler-request-apis';
+import { StatusCodeResponseRequestAPI } from 'src/app/shared/models/StatusCode';
 
 @Component({
   selector: 'app-request-password-reset',
@@ -16,12 +16,12 @@ export class RequestPasswordResetComponent implements OnInit {
   private subscription: Subscription[] = [];
 
   formRequestPasswordReset = new FormGroup({});
-  errorReturn: Error | null = null;
 
   constructor(
     private requestPasswordResetService: RequestPasswordResetService,
     private fb: FormBuilder,
-    private router: Router) { }
+    private router: Router,
+    private httpHandlerResp: HandlerRequestApis) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -39,11 +39,10 @@ export class RequestPasswordResetComponent implements OnInit {
         this.requestPasswordResetService.requestPasswordReset({ CPF })
           .subscribe({
             next: () => {
-
+              this.httpHandlerResp.GetReturnAPIResult(StatusCodeResponseRequestAPI.OK, null, 'Acabamos de enviar um email para continuar com a redefinicao de senha.', null)
             },
-            complete: () => { },
             error: (err) => {
-              this.errorReturn = handleErrorRequestPasswordReset(err)
+              this.httpHandlerResp.GetReturnAPIResult(err.status, null, 'Ops! Houve algum problema ao tentar recuperar sua senha. Favor tente novamente ou entre em contato conosco.', null)
             }
           })
       );

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'login/:userEmail/:userId/:tokenConfirmEmail', component: LoginComponent, pathMatch: 'full' },
   { path: 'login/:confirmSuccess', component: LoginComponent, pathMatch: 'full' },
   { path: 'reset-password', component: ResetPasswordComponent, pathMatch: 'full' },
+  { path: 'request-password-reset/:email/:userId/:token', component: ResetPasswordComponent, pathMatch: 'full' },
   { path: 'subscribe', component: SubscribeComponent, pathMatch: 'full' },
   { path: 'user', loadChildren: () => import('./core/core.module').then(m => m.CoreModule)},
   { path: '**', redirectTo: '/login' }

@@ -7,12 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgxMaskModule } from 'ngx-mask';
+import { ResetPasswordConfirmComponent } from './reset-password-confirm/reset-password-confirm.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
   declarations: [
     ResetPasswordComponent,
-    RequestPasswordResetComponent
+    RequestPasswordResetComponent,
+    ResetPasswordConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { NgxMaskModule } from 'ngx-mask';
     MatInputModule,
     MatButtonModule,
     MatInputModule,
+    MatIconModule,
     NgxMaskModule.forRoot()
   ],
   exports: [

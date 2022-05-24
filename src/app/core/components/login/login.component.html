@@ -5,7 +5,10 @@
 
   <div class="container-full-right">
     <div class="d-flex justify-content-center">
-      <div class="w-50 container-login" *ngIf="showFormTemplate && !confirmSuccess">
+      <div
+        class="w-50 container-login"
+        *ngIf="showFormTemplate"
+      >
         <h1 class="title-login">LOGIN</h1>
         <form [formGroup]="formLogin" (ngSubmit)="logar()">
           <mat-form-field appearance="fill" class="form-field">
@@ -19,7 +22,11 @@
             >
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="form-field" style="margin-bottom: 0;">
+          <mat-form-field
+            appearance="fill"
+            class="form-field"
+            style="margin-bottom: 0"
+          >
             <mat-label>Senha</mat-label>
             <input matInput formControlName="password" type="password" />
             <mat-error
@@ -31,11 +38,14 @@
               >caracteres insufisciente:
               {{formLogin.controls['password'].errors?.['minlength']?.['actualLength']
 
+
               }}/
               {{formLogin.controls['password'].errors?.['minlength']?.['requiredLength']}}
             </mat-error>
           </mat-form-field>
-          <mat-error *ngIf="errorReturn !== null">{{ errorReturn?.Message }}</mat-error>
+          <mat-error *ngIf="errorReturn !== null">{{
+            errorReturn?.Message
+          }}</mat-error>
           <div class="btn-actions-form">
             <button
               mat-raised-button
@@ -52,6 +62,11 @@
             >
               ENTRAR
             </button>
+          </div>
+          <div class="w-100 mt-5">
+            <a href='/reset-password'>
+              <span class="float-end">esqueci minha senha </span>
+            </a>
           </div>
         </form>
       </div>

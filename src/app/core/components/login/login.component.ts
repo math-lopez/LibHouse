@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, Subscription, tap } from 'rxjs';
-import { handleErrorLogin } from 'src/app/shared/utilities/handle-error-login';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Error } from "../../../shared/models/errors";
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HandlerRequestApis } from 'src/app/shared/utilities/handler-request-apis';
+import { StatusCodeResponseRequestAPI } from 'src/app/shared/models/StatusCode';
 
 
 @Component({
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private activedRoute: ActivatedRoute,
-    private _snackBar: MatSnackBar) { }
+    private handlerResultApi: HandlerRequestApis) { }
 
   ngOnInit(): void {
     this.getParamsRouteLogin();
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             },
             complete: () => { },
             error: (err) => {
-              this.errorReturn = handleErrorLogin(err)
+              this.handlerResultApi.GetReturnAPIResult(err.status, null, null, null)
             }
           }));
     }
@@ -67,39 +66,31 @@ export class LoginComponent implements OnInit, OnDestroy {
   private getParamsRouteLogin(): void {
     this.subscription.push(
       this.activedRoute.paramMap
-      .subscribe(paraMap => {
-        this.UserEmail = paraMap.get('userEmail');
-        this.ConfirmationToken = paraMap.get('tokenConfirmEmail');
-        this.UserId = paraMap.get('userId');
-        this.confirmSuccess = paraMap.get('confirmSuccess') === 'true' ? true : false;
-        if (this.UserEmail && this.UserId && this.ConfirmationToken) {
-          this.subscription.push(
-            this.authService.emailConfirmation({ UserEmail: this.UserEmail, UserId: this.UserId, ConfirmationToken: this.ConfirmationToken})
-              .subscribe(
-                {
-                  next: confirm => {
-                    this.router.navigateByUrl(`login/${confirm}`)
-                  },
-                  error: err => this.handleErrosSubscribe(err)
-                }
-              ));
-        }
+        .subscribe(paraMap => {
+          this.UserEmail = paraMap.get('userEmail');
+          this.ConfirmationToken = paraMap.get('tokenConfirmEmail');
+          this.UserId = paraMap.get('userId');
+          this.confirmSuccess = paraMap.get('confirmSuccess') === 'true' ? true : false;
+          if (this.UserEmail && this.UserId && this.ConfirmationToken) {
+            this.subscription.push(
+              this.authService.emailConfirmation({ UserEmail: this.UserEmail, UserId: this.UserId, ConfirmationToken: this.ConfirmationToken })
+                .subscribe(
+                  {
+                    next: () => {
+                      this.confirmSuccess = true;
+                      this.redirectRoute(`login/${this.confirmSuccess}`);
+                    },
+                    error: err => {
+                      this.handlerResultApi.GetReturnAPIResult(err.status, null, 'Ops! Ocorreu algum problema ao confirmar sua conta', null)
+                    }
+                  }
+                ));
+          }
 
-        if (this.confirmSuccess) {
-          this.redirectRoute('login')
-        }
-      }));
-  }
-
-  private handleErrosSubscribe(err: HttpErrorResponse) {
-    let duration = 5;
-
-    this.errorReturn = handleErrorLogin(err);
-    this.showFormTemplate = false;
-    this.subscription.push(
-      this._snackBar.open('Erro ao confirmar email, entre em contato para resolução dos problemas', 'close', {
-        duration: duration * 1000
-      }).afterDismissed().subscribe(() => this.redirectRoute('login')));
+          if (this.confirmSuccess) {
+            this.handlerResultApi.GetReturnAPIResult(StatusCodeResponseRequestAPI.OK, null, 'Conta confirmada com sucesso', `login`)
+          }
+        }));
   }
 
   private criarFormulario() {
@@ -110,6 +101,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach(subs => subs.unsubscribe);
+    this.subscription.forEach(subs => subs.unsubscribe());
   }
 }
