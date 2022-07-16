@@ -6,6 +6,10 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Error } from "../../../shared/models/errors";
 import { HandlerRequestApis } from 'src/app/shared/utilities/handler-request-apis';
 import { StatusCodeResponseRequestAPI } from 'src/app/shared/models/StatusCode';
+import { Store } from '@ngrx/store';
+import { Authentication } from '../../store/auth/auth.actions';
+import { selectUserAuth } from '../../store/auth/auth.reducer';
+import { PasswordValid } from 'src/app/shared/validators/ComparePassword';
 
 
 @Component({
@@ -25,6 +29,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   previousUrl: string | null | undefined;
   errorReturn: Error | null = null;
 
+  teste = this.store.select(selectUserAuth)
+
   showFormTemplate = (this.ConfirmationToken === null || this.ConfirmationToken === undefined)
     && (this.UserEmail === null || this.UserEmail === undefined)
     && (this.UserId === null || this.UserId === undefined);
@@ -34,7 +40,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private router: Router,
     private activedRoute: ActivatedRoute,
-    private handlerResultApi: HandlerRequestApis) { }
+    private handlerResultApi: HandlerRequestApis,
+    private store: Store<{navigate: string}>) { }
 
   ngOnInit(): void {
     this.getParamsRouteLogin();
@@ -42,20 +49,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   logar() {
+
     if (this.formLogin.valid) {
       const { email, password } = this.formLogin.value;
+      this.store.dispatch(Authentication({ payload: { email, password } }))
 
-      this.subscription.push(
-        this.authService.authentication({ email, password })
-          .subscribe({
-            next: () => {
-              this.redirectRoute('/')
-            },
-            complete: () => { },
-            error: (err) => {
-              this.handlerResultApi.GetReturnAPIResult(err.status, null, null, null)
-            }
-          }));
+      // this.subscription.push(
+      //   this.authService.authentication({ email, password })
+      //     .subscribe({
+      //       next: () => {
+      //         this.redirectRoute('/')
+      //       },
+      //       complete: () => { },
+      //       error: (err) => {
+      //         this.handlerResultApi.GetReturnAPIResult(err.status, null, null, null)
+      //       }
+      //     }));
     }
   }
 
@@ -97,6 +106,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formLogin = this.fb.group({
       "email": [null, [Validators.required, Validators.email]],
       "password": [null, [Validators.required, Validators.minLength(6)]]
+    },
+    {
+      validators: PasswordValid("password")
     });
   }
 

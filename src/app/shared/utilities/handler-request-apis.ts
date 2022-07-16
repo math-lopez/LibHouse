@@ -10,6 +10,7 @@ export class HandlerRequestApis {
   constructor(private transactionService: TransactionService, private router: Router) { }
 
   async GetReturnAPIResult(status: number, options: TransactionOptions | null, message: string | null, redirect: string | null) {
+    console.log("asd")
     switch (status) {
       case 0:
         this.Offline0APIResult(options ?? {

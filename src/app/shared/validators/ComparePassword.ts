@@ -15,3 +15,17 @@ export function ComparePassword(
     }
   };
 }
+
+export function PasswordValid(
+  matchingControlName: string
+  ){
+  let regex = /^(?=.*[A-Z])(?=.*[!#@$%&])(?=.*[0-9])(?=.*[a-z]).{6,15}$/;
+  return (formGroup: FormGroup) => {
+    var matchingControl = formGroup.controls[matchingControlName].value;
+    if (!matchingControl?.match(regex)) {
+      formGroup.controls[matchingControlName].setErrors({ invalidPsw: true });
+    } else {
+      formGroup.controls[matchingControlName].setErrors(null);
+    }
+  };
+}

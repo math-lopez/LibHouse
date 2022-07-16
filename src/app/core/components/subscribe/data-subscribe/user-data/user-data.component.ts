@@ -40,6 +40,7 @@ export class UserDataComponent implements OnInit {
   }
 
   proximaEtapa(){
+    console.log(this.formUser)
     this.proximo.emit({
       userForm: this.formUser,
       nextStepper: true

@@ -4,5 +4,7 @@
 
 export const environment = {
   production: false,
-  API: 'https://localhost:5001/api/v1/'
+  API: 'https://localhost:5001/api/v1/',
+  userLocalStorage: "auth-user",
+  authToken: "auth-token"
 };

@@ -30,7 +30,7 @@ export class DataSubscribeComponent implements OnInit {
       ...command?.userForm?.controls,
       ...command?.personalForm?.controls,
       ...this.formSubscribe.controls,
-      UserType: [this._userType == 0 ? null : this._userType]
+      UserType: this._userType
     });
 
     if (command.finish) {
@@ -40,6 +40,7 @@ export class DataSubscribeComponent implements OnInit {
   }
 
   cadastrar() {
+    console.log(this.formSubscribe.value)
     if (!this.formSubscribe.valid) return;
     this.subscription.push(
       this.subscribeService.subscribe(this.formSubscribe.value)

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {  Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IAuthLogin } from '../components/login/models/auth-login'
@@ -15,16 +16,18 @@ export class AuthenticationService {
   userLogged$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   userData: IAuthLogin | null = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   authentication(usuario: IUserAuthentication): Observable<IAuthLogin> {
+    console.log()
     return this.http.post<IAuthLogin>(`${environment.API}users/login`, usuario)
       .pipe(
         tap(user => {
           if (user !== null) {
             this.userLogged$.next(true);
             this.userData = user;
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem(`${environment.userLocalStorage}`, JSON.stringify(user));
+            this.router.navigate(["/subscribe"])
           }
         })
       );
@@ -32,5 +35,18 @@ export class AuthenticationService {
 
   emailConfirmation(confirmationEmail: ConfirmationEmail): Observable<boolean> {
     return this.http.patch<boolean>(`${environment.API}users/confirm-registration`, {...confirmationEmail});
+  }
+
+  refreshToken(accessToken: string | null | undefined, refreshToken: string | null | undefined) {
+    return this.http.post<IAuthLogin>(`${environment.API}users/refresh-token`, {
+      refreshToken: refreshToken,
+      accessToken: accessToken
+    }).pipe(
+      tap(user => {
+        if(user !== null){
+          this.userData = user;
+        }
+      })
+    );
   }
 }

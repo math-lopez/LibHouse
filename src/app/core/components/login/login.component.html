@@ -34,11 +34,13 @@
               >insira sua senha</mat-error
             >
             <mat-error
+              *ngIf="formLogin.controls['password'].errors?.['invalidPsw']"
+              > Senha Invalida </mat-error
+            >
+            <mat-error
               *ngIf="formLogin.controls['password'].errors?.['minlength']"
               >caracteres insufisciente:
               {{formLogin.controls['password'].errors?.['minlength']?.['actualLength']
-
-
               }}/
               {{formLogin.controls['password'].errors?.['minlength']?.['requiredLength']}}
             </mat-error>
@@ -49,18 +51,18 @@
           <div class="btn-actions-form">
             <button
               mat-raised-button
-              (click)="redirectRoute('subscribe')"
-              class="btn-subscribe btn-login-left"
+              color="primary"
+              type="submit"
+              class="btn-submit btn-login-left"
             >
-              SE INSCREVER
+              ENTRAR
             </button>
             <button
               mat-raised-button
-              color="primary"
-              type="submit"
-              class="btn-submit btn-login-right"
+              (click)="redirectRoute('subscribe')"
+              class="btn-subscribe btn-login-right"
             >
-              ENTRAR
+              SE INSCREVER
             </button>
           </div>
           <div class="w-100 mt-5">
